@@ -1,18 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import WorkView from '../views/WorkView.vue'
-import ResumeView from '../views/ResumeView.vue'
+import ExperienceView from '../views/ExperienceView.vue'
+import CredentialsView from '../views/CredentialsView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', name: 'home', component: HomeView },
-    { path: '/work', name: 'work', component: WorkView },
-    { path: '/resume', name: 'resume', component: ResumeView }
+    { path: '/experience', name: 'experience', component: ExperienceView },
+    { path: '/credentials', name: 'credentials', component: CredentialsView }
   ],
-  // This ensures the page scrolls to the top when navigating to a new route
-  scrollBehavior() {
-    return { top: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    if (to.path === from.path) {
+      return false;
+    }
+    if (savedPosition) {
+      return savedPosition;
+    }
   }
 })
 

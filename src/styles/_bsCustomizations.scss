@@ -1,0 +1,48 @@
+
+
+// bs icons required sass for vite
+@use "bootstrap-icons/font/bootstrap-icons" with (
+  $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts"
+);
+
+// Colors to add:
+$darkest-blue: #0b032d;
+$dark-blue: #1b263b;
+$normal-blue: #415a77;
+$light-blue: #778da9;
+$new-orange: #edb88b;
+
+// Bootstrap defaults
+$primary: $normal-blue;
+$secondary: $dark-blue;
+$success: #43a047;
+$danger: #e53935;
+$warning: #fdd835;
+$info: #00acc1;
+$new-light: #e0e1dd;
+$new-dark: #0d1b2a;
+$light: #f5f5f5;
+$dark: #212121;
+
+// add new colors
+$custom-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "danger": $danger,
+  "warning": $warning,
+  "info": $info,
+  "light": $light,
+  "dark": $dark,
+  "new-light": $new-light,
+  "new-dark": $new-dark,
+  "darkest-blue": $darkest-blue,
+  "dark-blue": $dark-blue,
+  "normal-blue": $normal-blue,
+  "light-blue": $light-blue,
+  "new-orange": $new-orange
+);
+
+@use "bootstrap" with (
+  $theme-colors: $custom-colors
+);

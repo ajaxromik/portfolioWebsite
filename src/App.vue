@@ -1,6 +1,10 @@
 <script setup>
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+}
 </script>
 
 <template>
@@ -9,7 +13,7 @@ import Footer from './components/Footer.vue'
     
     <main class="flex-grow-1">
       <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in" @after-leave="scrollToTop">
           <component :is="Component" />
         </transition>
       </router-view>
@@ -20,7 +24,6 @@ import Footer from './components/Footer.vue'
 </template>
 
 <style>
-/* Transition styling */
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -32,5 +35,9 @@ import Footer from './components/Footer.vue'
 .fade-enter-to,
 .fade-leave-from {
   opacity: 1;
+}
+
+html {
+  overflow-y: scroll; /* Keep this to prevent horizontal scrollbar layout shifts */
 }
 </style>
