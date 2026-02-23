@@ -44,5 +44,10 @@ $custom-colors: (
 );
 
 @use "bootstrap" with (
-  $theme-colors: $custom-colors
+  $theme-colors: $custom-colors,
+  $navbar-dark-color: $light-blue,
+  $navbar-dark-hover-color: $light,
+  $navbar-dark-active-color: $new-light,
+  $navbar-dark-brand-color: $new-light,
+  $navbar-dark-brand-hover-color: $light
 );

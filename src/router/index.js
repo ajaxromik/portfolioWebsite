@@ -10,14 +10,7 @@ const router = createRouter({
     { path: '/experience', name: 'experience', component: ExperienceView },
     { path: '/credentials', name: 'credentials', component: CredentialsView }
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (to.path === from.path) {
-      return false;
-    }
-    if (savedPosition) {
-      return savedPosition;
-    }
-  }
+  linkActiveClass: 'active'
 })
 
 export default router

@@ -1,26 +1,48 @@
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import SimpleBar from 'simplebar-vue'
+import 'simplebar/dist/simplebar.min.css'
 
-const scrollToTop = () => {
-  window.scrollTo(0, 0);
-}
+const router = useRouter()
+const scrollContainer = ref(null) // SimpleBar component
+const scrollPositions = new Map()
+
+router.beforeEach((to, from) => {
+  if (scrollContainer.value && scrollContainer.value.scrollElement) {
+    scrollPositions.set(from.fullPath, scrollContainer.value.scrollElement.scrollTop)
+  }
+})
+
+const handleScrollState = () => {
+  if (!scrollContainer.value || !scrollContainer.value.scrollElement) return;
+  
+  const scrollElement = scrollContainer.value.scrollElement;
+  const currentPath = router.currentRoute.value.fullPath;
+  
+  const savedTop = scrollPositions.get(currentPath) || 0;
+  scrollElement.scrollTo({ top: savedTop, behavior: 'instant' });
+};
 </script>
 
 <template>
-  <div class="d-flex flex-column min-vh-100">
-    <Navbar />
-    
-    <main class="flex-grow-1">
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in" @after-leave="scrollToTop">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </main>
+  <SimpleBar class="main-scroll-area" ref="scrollContainer">
+    <div class="d-flex flex-column min-vh-100">
+      <Navbar />
+      
+      <main class="flex-grow-1 bg-new-light d-flex flex-column">
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in" @after-leave="handleScrollState">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </main>
 
-    <Footer />
-  </div>
+      <Footer />
+    </div>
+  </SimpleBar>
 </template>
 
 <style>
@@ -38,6 +60,17 @@ const scrollToTop = () => {
 }
 
 html {
-  overflow-y: scroll; /* Keep this to prevent horizontal scrollbar layout shifts */
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+.main-scroll-area {
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+.content-safe-zone {
+  padding: 2rem;
+  padding-right: 4rem; /* Your safe zone for the overlay scrollbar */
 }
 </style>
