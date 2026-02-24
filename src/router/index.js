@@ -3,6 +3,7 @@ import PageNotFound from '../views/PageNotFoundView.vue'
 import HomeView from '../views/HomeView.vue'
 import ExperienceView from '../views/ExperienceView.vue'
 import CredentialsView from '../views/CredentialsView.vue'
+import FirebaseDB from '../components/FirebaseDB.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/credentials',
       name: 'credentials',
       component: CredentialsView
+    },
+    {
+      path: '/dbtest',
+      name: 'dbtest',
+      component: FirebaseDB
     },
     {
       path: '/:pathMatch(.*)*',
