@@ -1,3 +1,7 @@
+<!-- TODO: consistent width for all content, but make some 2 column and 3 column.
+ "Flowy, not static, accordions, and fun shapes."
+  -->
+
 <template>
   <div class="pt-5">
     <section class="py-5 bg-light">
@@ -49,23 +53,23 @@
         <div class="row gy-4 justify-content-center">
           <div class="col-md-12 d-flex flex-column gap-4">
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
-                    <h3 class="h4 fw-bold card-title text-primary">Firebase Vue Website</h3>
+                    <h3 class="h4 fw-bold card-title text-primary">Firebase Hosted Vue.js Single Page Application</h3>
                     <p class="text-muted mb-2">Feb. 2026</p>
                   </div>
                   <a target="_blank" class="btn btn-outline-primary btn-sm rounded-pill fw-semibold disabled"><i class="bi bi-code-slash me-1"></i> Private Repository</a>
                 </div>
                 <ul class="m-0 text-secondary">
-                  <li>Researched how to build a Vue SPA and use Google Firebase to host it.</li>
+                  <li>Researched how to build a Vue SPA and use Google Firebase to host it for free.</li>
                   <li>Built the app with Bootstrap 5 based largely on my LinkedIn and Resume.</li>
                 </ul>
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -84,7 +88,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -102,7 +106,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -118,7 +122,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -134,7 +138,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -150,7 +154,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
@@ -167,7 +171,7 @@
               </div>
             </div>
 
-            <div class="card shadow-sm bg-light border-0">
+            <div class="card shadow bg-light border-0">
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>

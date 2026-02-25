@@ -1,21 +1,23 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase'; 
+import { db } from '../firebase';
 
-// SOURCE OF TRUTH: Must match the write component exactly
+// TODO: make limit lower for number of suggestions showing
+// TODO: reformat output
+
 const ALLOWED_ASPECTS = ['Projects', 'Certifications', 'Jobs'];
 const ALLOWED_AREAS = [
-  'Cybersecurity', 
-  'OOP', 
-  'Database Design', 
-  'Full-Stack', 
+  'Cybersecurity',
+  'OOP',
+  'Database Design',
+  'Full-Stack',
   'Another Language/Technology'
 ];
 
 const validEntries = ref([]);
 const isLoading = ref(true);
-let unsubscribe = null; 
+let unsubscribe = null;
 
 onMounted(() => {
   const adviceRef = collection(db, 'career_advice');
@@ -23,11 +25,11 @@ onMounted(() => {
 
   unsubscribe = onSnapshot(q, (querySnapshot) => {
     const fetchedEntries = [];
-    
+
     querySnapshot.forEach((doc) => {
       const data = doc.data();
-      
-      // STRICT READ VALIDATION: 
+
+      // STRICT READ VALIDATION:
       // Only push to the array if BOTH values exactly match our allowed lists.
       // Anything else is ignored entirely.
       const isAspectValid = ALLOWED_ASPECTS.includes(data.aspect);
@@ -44,7 +46,7 @@ onMounted(() => {
         console.warn(`Invalid data dropped silently: Document ID ${doc.id}`);
       }
     });
-    
+
     validEntries.value = fetchedEntries;
     isLoading.value = false;
   }, (error) => {
@@ -58,10 +60,10 @@ onUnmounted(() => {
 });
 
 const formatDate = (timestamp) => {
-  if (!timestamp) return 'Just now'; 
+  if (!timestamp) return 'Just now';
   const date = timestamp.toDate();
-  return new Intl.DateTimeFormat('en-US', { 
-    month: 'short', 
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
     day: 'numeric'
   }).format(date);
 };
@@ -83,9 +85,9 @@ const formatDate = (timestamp) => {
       <div v-for="entry in validEntries" :key="entry.id" class="card shadow-sm border-start border-primary border-4">
         <div class="card-body py-2">
           <p class="mb-0">
-            Someone suggested I focus on 
-            <span class="fw-bold text-primary">{{ entry.aspect }}</span> 
-            in 
+            Someone suggested I focus on
+            <span class="fw-bold text-primary">{{ entry.aspect }}</span>
+            in
             <span class="badge bg-secondary rounded-pill">{{ entry.area }}</span>
           </p>
           <small class="text-muted" style="font-size: 0.75rem;">

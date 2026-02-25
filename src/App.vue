@@ -18,20 +18,20 @@ router.beforeEach((to, from) => {
 
 const handleScrollState = () => {
   if (!scrollContainer.value || !scrollContainer.value.scrollElement) return;
-  
+
   const scrollElement = scrollContainer.value.scrollElement;
   const currentPath = router.currentRoute.value.fullPath;
-  
+
   const savedTop = scrollPositions.get(currentPath) || 0;
   scrollElement.scrollTo({ top: savedTop, behavior: 'instant' });
 };
 </script>
 
 <template>
-  <SimpleBar class="main-scroll-area" ref="scrollContainer">
+  <SimpleBar class="scrollable-area" ref="scrollContainer">
     <div class="d-flex flex-column min-vh-100">
       <Navbar />
-      
+
       <main class="flex-grow-1 bg-new-light d-flex flex-column">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in" @after-leave="handleScrollState">
@@ -60,17 +60,12 @@ const handleScrollState = () => {
 }
 
 html {
-  overflow-y: auto; 
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
-.main-scroll-area {
+.scrollable-area {
   max-height: 100vh;
   overflow-x: hidden;
-}
-
-.content-safe-zone {
-  padding: 2rem;
-  padding-right: 4rem; /* Your safe zone for the overlay scrollbar */
 }
 </style>

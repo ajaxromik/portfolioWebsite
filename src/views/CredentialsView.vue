@@ -11,7 +11,7 @@
         </div>
         <div class="col-6 col-md-12">
           <p class="my-2"><span class="fw-semibold">Honors:</span> GPA 3.7, President's List, Dean's List</p>
-          <p class="mb-0"><span class="fw-semibold">Highlight Courses:</span> Software Engineering, Data Structures & Algorithms, 
+          <p class="mb-0"><span class="fw-semibold">Highlight Courses:</span> Software Engineering, Data Structures & Algorithms,
             <br>
             Visual Analytics, and Database Systems and Design
           </p>
@@ -19,7 +19,8 @@
       </div>
     </section>
 
-    <section class="flex-grow-1 d-flex flex-column justify-content-center py-5 bg-light-blue">
+    <!-- TODO: try a lighter blue? -->
+    <section class="flex-grow-1 d-flex flex-column justify-content-center py-5 bg-light">
       <div class="container text-center">
         <h2 class="mb-4 fw-bold pb-1">Technical Skills</h2>
         <div class="row justify-content-center">

@@ -27,7 +27,6 @@ onMounted(() => {
   // Set up real-time listener for tasks
   const tasksCollectionRef = collection(db, 'tasks');
   const q = query(tasksCollectionRef, orderBy('createdAt', 'desc'));
-  console.log(q);
 
   unsubscribe = onSnapshot(q, (snapshot) => {
     const tasksArray = [];
@@ -68,7 +67,7 @@ onUnmounted(() => {
         </div>
         <hr class="container-sm">
         <div class="container flex-grow-1 d-flex gap-3 justify-content-center">
-            <ContactForm class="flex-grow-1" />
+            <ContactForm />
             <ContactOutputs class="flex-grow-1" />
         </div>
     </div>
