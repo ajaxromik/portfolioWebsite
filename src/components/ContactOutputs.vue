@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 
 // TODO: make limit lower for number of suggestions showing
@@ -21,7 +21,7 @@ let unsubscribe = null;
 
 onMounted(() => {
   const adviceRef = collection(db, 'career_advice');
-  const q = query(adviceRef, orderBy('createdAt', 'desc'));
+  const q = query(adviceRef, orderBy('createdAt', 'desc'), limit(5));
 
   unsubscribe = onSnapshot(q, (querySnapshot) => {
     const fetchedEntries = [];

@@ -3,7 +3,7 @@ import PageNotFound from '../views/PageNotFoundView.vue'
 import HomeView from '../views/HomeView.vue'
 import ExperienceView from '../views/ExperienceView.vue'
 import CredentialsView from '../views/CredentialsView.vue'
-import FirebaseDB from '../components/FirebaseDB.vue'
+// import FirebaseDB from '../components/FirebaseDB.vue'
 import AuthView from '../views/AuthView.vue'
 
 const router = createRouter({
