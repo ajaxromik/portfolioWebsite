@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PageNotFound from '../views/PageNotFoundView.vue'
 import HomeView from '../views/HomeView.vue'
-import ExperienceView from '../views/ExperienceView.vue'
-import CredentialsView from '../views/CredentialsView.vue'
-// import FirebaseDB from '../components/FirebaseDB.vue'
-import AuthView from '../views/AuthView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,32 +9,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView // Eagerly loaded
     },
     {
       path: '/experience',
       name: 'experience',
-      component: ExperienceView
+      component: () => import('../views/ExperienceView.vue') // lazy load for other components
     },
     {
       path: '/credentials',
       name: 'credentials',
-      component: CredentialsView
+      component: () => import('../views/CredentialsView.vue')
     },
     // {
     //   path: '/dbtest',
     //   name: 'dbtest',
-    //   component: FirebaseDB
+    //   component: () => import('../components/FirebaseDB.vue')
     // },
     {
       path: '/login',
       name: 'login',
-      component: AuthView
+      component: () => import('../views/AuthView.vue')
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'Page Not Found',
-      component: PageNotFound
+      component: () => import('../views/PageNotFoundView.vue')
     }
   ],
   linkActiveClass: 'active'

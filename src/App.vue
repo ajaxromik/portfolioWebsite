@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import SimpleBar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
+import { useAuth } from './composables/useAuth';
 
 const router = useRouter()
 const scrollContainer = ref(null) // SimpleBar component
@@ -25,10 +26,17 @@ const handleScrollState = () => {
   const savedTop = scrollPositions.get(currentPath) || 0;
   scrollElement.scrollTo({ top: savedTop, behavior: 'instant' });
 };
+
+const { user, initAuth } = useAuth();
+
+onMounted(async () => {
+  initAuth();
+});
 </script>
 
 <template>
   <SimpleBar class="scrollable-area" ref="scrollContainer">
+    <!-- <div class="py-5">{{ user ? user.displayName : "" }}</div> -->
     <div class="d-flex flex-column min-vh-100">
       <Navbar />
 
