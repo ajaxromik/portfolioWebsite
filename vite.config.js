@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
-export default defineConfig(({ command, mode}) => {
+export default defineConfig(({ command, mode }) => {
   return {
     plugins: [vue()],
     // quiet the deprecation warnings that sass creates when reading the current version of bootstrap
@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode}) => {
       }
     },
     server: {
-      host: true,
+      // host: true,
       port: 5173
     }
   }
