@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="min-vh-100 d-flex align-items-center bg-light text-center pt-5">
+    <section class="landing-section d-flex align-items-center bg-light text-center pt-5">
       <div class="container">
         <div class="row">
           <div class="mx-auto col-12 col-lg-8">

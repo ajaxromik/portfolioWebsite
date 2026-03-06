@@ -49,7 +49,6 @@ onUnmounted(() => {
 
 <template>
   <div class="bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
-    <p class="py-4"></p>
     <div class="my-auto flex-grow-1 d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column align-items-center">
             <h2>Cloud Firestore Tasks</h2>

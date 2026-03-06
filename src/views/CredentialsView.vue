@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5 bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
+  <div class="bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
     <section class="flex-grow-1 d-flex flex-column justify-content-center py-5 px-4 container">
       <div class="row mx-md-0 gx-5 text-center">
         <h2 class="fw-bold col-12 border-bottom pb-1">Education</h2>

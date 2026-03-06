@@ -3,7 +3,7 @@
   -->
 
 <template>
-  <div class="pt-5">
+  <div>
     <section class="py-5 bg-light">
       <div class="container">
         <h2 class="text-center text-new-dark mb-4 fw-bold">Work Experience</h2>
@@ -14,7 +14,7 @@
                 <h3 class="h4 fw-bold text-primary">Software Engineering Co-op/Intern at RunSignUp</h3>
                 <p class="text-muted mb-2">Jan. 2025 - Aug. 2025</p>
                 <ul class="m-0 text-secondary">
-                  <li>Delivered 50+ bug fixes and feature enhancements across full-stack web applications using Vue.js, Sass, Smarty, PHP, and MySQL in MVC architecture with comprehensive unit testing.</li>
+                  <li>Delivered 50+ bug fixes and feature enhancements across full-stack web applications using Vue.js, PHP, MySQL, Docker, Smarty, and Sass in MVC architecture with comprehensive unit testing.</li>
                   <li>Built 3 & 4-column website builder layouts while refactoring all website builder component models to enable scalable future layout development, using Cursor IDE for rapid code analysis, development, and review.</li>
                   <li>Implemented database migration scripts and PHP CRUD methods that were optimized with caching integration.</li>
                   <li>Enhanced user experience through accessibility improvements and cross-device testing, ensuring compatibility across multiple platforms using Xcode simulator</li>
@@ -57,14 +57,16 @@
               <div class="card-body p-4">
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
-                    <h3 class="h4 fw-bold card-title text-primary">Firebase Hosted Vue.js Single Page Application</h3>
-                    <p class="text-muted mb-2">Feb. 2026</p>
+                    <h3 class="h4 fw-bold card-title text-primary">Firebase Hosted Vue.js Single Page Application (This Site!)</h3>
+                    <p class="text-muted mb-2">Currently In Development</p>
                   </div>
                   <a target="_blank" class="btn btn-outline-primary btn-sm rounded-pill fw-semibold disabled"><i class="bi bi-code-slash me-1"></i> Private Repository</a>
                 </div>
                 <ul class="m-0 text-secondary">
                   <li>Researched how to build a Vue SPA and use Google Firebase to host it for free.</li>
-                  <li>Built the app with Bootstrap 5 based largely on my LinkedIn and Resume.</li>
+                  <li>Built the app with Bootstrap 5 styling based largely on my LinkedIn and Resume with the help of Google's Gemini and Cursor IDE.</li>
+                  <li>Used Firestore Database to add a spaced repetition flashcard system that users can create and review their own flashcards with.</li>
+                  <li>Used Firebase Authentication to allow users to sign into my application with Google.</li>
                 </ul>
               </div>
             </div>

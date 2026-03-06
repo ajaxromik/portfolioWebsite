@@ -1,9 +1,5 @@
-<!-- TODO: left & right padding is too much bc of container, get stuff closer to the ends  DONE
-    Also make something under it so that content also does not need an empty item for padding underneath?
--->
-
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-darkest-blue fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-darkest-blue sticky-top">
     <div class="container mw-100">
       <router-link class="navbar-brand fw-bold" to="/">William Carr</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -19,6 +15,9 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/credentials">More Details</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/flashcards">Flashcards Application</router-link>
           </li>
         </ul>
       </div>
