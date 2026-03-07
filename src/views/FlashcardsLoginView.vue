@@ -44,10 +44,10 @@ const handleGoogle = async () => {
         <div class="row justify-content-center">
           <div class="col-12 col-md-9 col-lg-6">
             <div class="card border-0 shadow-sm">
-              <div class="card-body p-4 p-md-5">
+              <div class="card-body p-4 p-md-5 text-center">
                 <h1 class="h3 fw-bold mb-2">Flashcards login</h1>
                 <p class="text-secondary mb-4">
-                  Sign in with Google to create decks and sync your progress.
+                  Sign in with Google to create decks and flashcards.
                 </p>
 
                 <button
@@ -65,8 +65,11 @@ const handleGoogle = async () => {
                 </div>
 
                 <div class="mt-4 d-flex justify-content-between align-items-center">
-                  <router-link to="/flashcards" class="btn btn-link px-0">Back</router-link>
-                  <small class="text-muted">Google is the only sign-in option.</small>
+                  <router-link to="/flashcards" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Back
+                  </router-link>
+                  <small class="text-muted w-50 text-end">Google is the only sign-in option to remove the complexity of password hashing.</small>
                 </div>
               </div>
             </div>
