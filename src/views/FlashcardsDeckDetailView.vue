@@ -296,19 +296,22 @@ onBeforeUnmount(async () => {
 
 <template>
   <div class="bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
-    <section class="review-section position-relative d-flex align-items-center justify-content-center bg-light">
-      <div class="position-absolute top-0 start-0 p-3">
+    <!-- adjust the height fitting so it all ideally fits in frame at top scroll -->
+    <header class="d-flex justify-content-between align-items-start p-3 bg-light w-100">
+      <div>
         <router-link to="/flashcards/decks" class="btn btn-outline-secondary btn-sm">
           <i class="bi bi-arrow-left me-1"></i>
           Back
         </router-link>
       </div>
-
-      <div class="position-absolute top-0 end-0 p-3 text-end">
+      <div class="text-end">
         <div class="small text-muted">Deck</div>
         <div class="fw-semibold">{{ deck?.title || '...' }}</div>
       </div>
+    </header>
 
+    <section v-if="isLoading || errorMessage || hasAnyCards" class="review-section position-relative d-flex align-items-center justify-content-center bg-light">
+      
       <div v-if="isLoading" class="d-flex align-items-center gap-3">
         <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
         <div class="text-secondary">Loading cards...</div>
@@ -484,7 +487,7 @@ onBeforeUnmount(async () => {
 
 <style scoped>
 .review-section {
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 133px);
 }
 </style>
 
