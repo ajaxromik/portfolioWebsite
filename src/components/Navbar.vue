@@ -1,8 +1,17 @@
+<script setup>
+import { Collapse } from 'bootstrap';
+
+const toggleNavMenu = () => {
+  const menuEl = document.getElementById('navbarNav');
+  const collapseInstance = Collapse.getOrCreateInstance(menuEl);
+  collapseInstance.toggle();
+};
+</script>
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-darkest-blue sticky-top">
     <div class="container mw-100">
       <router-link class="navbar-brand fw-bold" to="/">William Carr</router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" @click="toggleNavMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
