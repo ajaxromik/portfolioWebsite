@@ -27,3 +27,4 @@ firebase.js
 .firebase/*
 *.yaml
 *.plan.md
+*.rules
