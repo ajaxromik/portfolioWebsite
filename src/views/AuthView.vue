@@ -1,76 +1,9 @@
 <script setup>
-// import { ref, onMounted } from 'vue';
-// import { auth, db } from '../firebase'; 
-// import { doc, setDoc } from 'firebase/firestore';
-// import { 
-//   onAuthStateChanged, signInAnonymously, GoogleAuthProvider, signInWithRedirect, signOut, getRedirectResult
-// } from 'firebase/auth';
-
-// const user = ref(null);
-// const loading = ref(true);
-
-// onMounted(async () => {
-//     // Handle sign in redirect
-//     try {
-//         const result = await getRedirectResult(auth);
-//         if (result?.user) {
-//             user.value = result.user;
-//         }
-//     } catch (error) {
-//         console.error("Redirect Error:", error.code, error.message);
-//         if (error.code === 'auth/internal-error') { //TODO: get rid of all alerts
-//             alert("Sign-in blocked. Please disable ad-blockers for this site.");
-//         }
-//     }
-
-//     onAuthStateChanged(auth, (currentUser) => {
-//         if (currentUser) {
-//             user.value = currentUser;
-//             loading.value = false;
-//         } else {
-//             // Create an anonymous session to allow updating click button
-//             signInAnonymously(auth).catch(err => {
-//                 console.error("Anon Auth failed:", err);
-//                 loading.value = false;
-//             });
-//         }
-//     });
-// });
-
-// const signInWithGoogle = async () => {
-//   const provider = new GoogleAuthProvider();
-//   provider.setCustomParameters({ prompt: 'select_account' });
-//   try {
-//     await signInWithRedirect(auth, provider);
-//   } catch (error) {
-//     console.error("Google sign-in failed:", error);
-//   }
-// };
-
-// Data tied to this user's UID
-// const saveUserData = async () => {
-//   if (!user.value || user.value.isAnonymous) return;
-
-//   try {
-//     // We strictly use the user's UID as the document name
-//     const userRef = doc(db, 'userData', user.value.uid);
-//     await setDoc(userRef, {
-//       lastLogin: new Date(),
-//       favoriteColor: 'blue' // Example data
-//     }, { merge: true });
-//     alert("Private data saved!");
-//   } catch (error) {
-//     console.error("Failed to save data:", error);
-//     alert("Security Rules blocked the request or an error occurred.");
-//   }
-// };
-
-// const logout = () => signOut(auth);
-
 import FlashcardSystem from '../components/FlashcardSystem.vue';
 import { useAuth } from '../composables/useAuth';
 import { saveUserPreferences } from '../services/userDBUpdate';
 
+// TODO: rename this file and other files with bad naming
 // Pull in exactly what you need from the composable
 const { user, loading, signInWithGoogle, logout } = useAuth();
 

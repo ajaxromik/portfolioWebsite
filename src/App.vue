@@ -27,7 +27,7 @@ const handleScrollState = () => {
   scrollElement.scrollTo({ top: savedTop, behavior: 'instant' });
 };
 
-const { user, initAuth } = useAuth();
+const { initAuth } = useAuth();
 
 onMounted(async () => {
   initAuth();
@@ -36,7 +36,6 @@ onMounted(async () => {
 
 <template>
   <SimpleBar class="scrollable-area" ref="scrollContainer">
-    <!-- <div class="py-5">{{ user ? user.displayName : "" }}</div> -->
     <div class="d-flex flex-column min-vh-100">
       <Navbar />
 

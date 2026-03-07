@@ -13,7 +13,6 @@ import {
   deleteCard,
   getDeck,
   listenCards,
-  renameDeck,
   updateCard,
 } from '../services/userDBUpdate';
 import { Modal } from 'bootstrap'
@@ -399,6 +398,7 @@ onBeforeUnmount(async () => {
 
                 <div class="text-muted small mt-3">
                   Tip: type front → Tab → type back → Enter. Cards are saved in batches every 30 seconds.
+                  <!-- TODO: reword -->
                 </div>
               </div>
             </div>
