@@ -24,7 +24,7 @@ const router = createRouter({
     // {
     //   path: '/dbtest',
     //   name: 'dbtest',
-    //   component: () => import('../components/FirebaseDB.vue')
+    //   component: () => import('../.archive/FirebaseDB.vue')
     // },
     {
       path: '/login',
