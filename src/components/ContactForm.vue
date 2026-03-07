@@ -3,8 +3,7 @@ import { ref, computed } from 'vue';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 
-// TODO: add throttling to the form
-// TODO: add a simple counter input
+// TODO: add a simple counter input.. ?
 // TODO: reformat title and add custom hover class to this file?
 
 const ALLOWED_ASPECTS = ['Projects', 'Certifications', 'Jobs'];

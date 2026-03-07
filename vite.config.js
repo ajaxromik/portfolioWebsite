@@ -12,10 +12,11 @@ export default defineConfig(({ command, mode }) => {
           quietDeps: true
         }
       }
-    },
-    server: {
-      // host: true,
-      port: 5173
     }
+    // ,
+    // server: {
+    //   host: true,
+    //   port: 5173
+    // }
   }
 })
