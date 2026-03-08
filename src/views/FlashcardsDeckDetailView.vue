@@ -1,7 +1,7 @@
 <script setup>
 import { Timestamp } from 'firebase/firestore';
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue';
-import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
+import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import FlashcardReview from '../components/FlashcardReview.vue';
 import ConfirmModal from '../components/ConfirmModal.vue';
 import { useAuth } from '../composables/useAuth';
@@ -17,7 +17,6 @@ import {
 } from '../services/userDBUpdate';
 import { Modal } from 'bootstrap'
 
-const router = useRouter(); //TODO: remove?
 const route = useRoute();
 const { user } = useAuth();
 
@@ -403,7 +402,10 @@ onBeforeUnmount(async () => {
                 </button>
 
                 <div class="text-muted small mt-3">
-                  Tip: type front → Tab → type back → Enter. Cards are saved in batches every 30 seconds.
+                  Tip: Use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to move forward and backwards between inputs.
+                  Use <kbd>Enter</kbd> to submit a card.
+                  <br />
+                  Cards are saved in batches every 30 seconds.
                   <!-- TODO: reword -->
                 </div>
               </div>

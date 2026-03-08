@@ -59,7 +59,7 @@ const isSignedIn = computed(() => !!user.value && !user.value.isAnonymous);
           </p>
         </div>
       </div>
-      <div class="container text-center mb-4">
+      <div class="container text-center mb-4 d-flex flex-column justify-content-center align-items-center">
         <FlashcardSystem />
       </div>
       <div class="container text-center d-flex flex-column justify-content-center align-items-center">
