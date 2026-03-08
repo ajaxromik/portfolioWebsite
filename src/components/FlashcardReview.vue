@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import SimpleBar from 'simplebar-vue';
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_CARDS_PER_SESSION = 25;
@@ -65,6 +66,14 @@ const formattedNextReview = computed(() => {
   return `${datePart} at ${timePart}`;
 });
 
+// New Computed Properties for the UI states
+const statusText = computed(() => {
+  if (isReviewing.value) return 'Reviewing';
+  return dueCardsTotal.value > 0 ? 'Ready to review' : 'Nothing for review';
+});
+
+const canRate = computed(() => isReviewing.value && hasFlipped.value);
+
 const resetReviewState = () => {
   isReviewing.value = false;
   isFlipped.value = false;
@@ -115,6 +124,8 @@ const nextCard = () => {
 };
 
 const handleRating = (rating) => {
+  if (!canRate.value) return;
+  
   const card = currentCard.value;
   if (!card) return;
 
@@ -174,95 +185,118 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container col-12 col-md-8 col-lg-6 text-center">
+  <div class="col-12 text-center max-950">
     <div class="srs-window d-flex flex-column justify-content-center align-items-center w-100">
-      <div v-if="!isReviewing" class="card p-5 bg-light border-0 shadow-sm rounded-4 w-100">
-        <h2 class="mb-3">Flashcard Review</h2>
+      
+      <div class="w-100 mb-3 fw-bold text-secondary fs-6 d-flex justify-content-between align-items-center">
+        <span>{{ statusText }}</span>
+        <span>{{ isReviewing ? currentCardIndex + 1 : 0 }} / {{ isReviewing ? reviewQueue.length : 0 }}</span>
+      </div>
+      
+      <div class="progress mb-4 w-100" style="height: 8px">
+        <div
+          class="progress-bar bg-primary"
+          role="progressbar"
+          :style="{ width: (isReviewing ? progressPercentage : 0) + '%' }"
+          :aria-valuenow="isReviewing ? progressPercentage : 0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
 
-        <p class="fs-5 mb-2">
-          You have <strong class="text-primary">{{ dueCardsTotal }}</strong> cards ready for review.
-        </p>
+      <div class="flashcard w-100 mb-4" :class="{ flipped: isFlipped && isReviewing }" @click="flipCard">
+        <div class="card-inner">
 
-        <p v-if="dueCardsTotal === 0 && formattedNextReview" class="text-muted mb-4">
-          Next recommended review:<br />
-          <strong>{{ formattedNextReview }}</strong>
-        </p>
-        <div v-else class="mb-4"></div>
-
-        <div>
-          <button
-            class="btn btn-success btn-lg px-5 rounded-pill shadow-sm"
-            :disabled="normalizedCards.length === 0"
-            @click="startReview"
+          <div
+            class="card-front bg-white border border-2 border-primary rounded-4 shadow-sm overflow-hidden"
           >
-            {{ dueCardsTotal > 0 ? 'Start Review' : 'Review Anyways' }}
-          </button>
+            <div 
+              v-if="!isReviewing" 
+              class="h-100 w-100 d-flex flex-column justify-content-center align-items-center p-4"
+            >
+              <h3 class="mb-3">Flashcard Review</h3>
+              <p class="fs-6 mb-3">
+                You have <strong class="text-primary">{{ dueCardsTotal }}</strong> cards ready.
+              </p>
+              <button
+                class="btn btn-success btn-lg px-4 rounded-pill shadow-sm"
+                :disabled="normalizedCards.length === 0"
+                @click.stop="startReview"
+              >
+                {{ dueCardsTotal > 0 ? 'Start Review' : 'Review Anyways' }}
+              </button>
+              <p v-if="dueCardsTotal === 0 && formattedNextReview" class="text-muted small mt-3 mb-0">
+                Next review: {{ formattedNextReview }}
+              </p>
+            </div>
+            
+            <div v-show="isReviewing" class="h-100 w-100 p-2">
+              <SimpleBar class="h-100 w-100 text-center">
+                <h3 class="card-text mb-0 p-3">{{ currentCard?.front }}</h3>
+              </SimpleBar>
+            </div>
+          </div>
+
+          <div
+            class="card-back bg-primary bg-opacity-10 border border-2 border-primary rounded-4 shadow-sm overflow-hidden"
+          >
+            <div class="h-100 w-100 p-2">
+              <SimpleBar class="h-100 w-100 text-center">
+                <h3 class="card-text mb-0 p-3">{{ currentCard?.back }}</h3>
+              </SimpleBar>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div v-else class="w-100">
-        <div class="mb-3 fw-bold text-secondary fs-6 d-flex justify-content-between align-items-center">
-          <span>Reviewing</span>
-          <span>{{ currentCardIndex + 1 }} / {{ reviewQueue.length }}</span>
-        </div>
-        <div class="progress mb-4" style="height: 8px">
-          <div
-            class="progress-bar bg-primary"
-            role="progressbar"
-            :style="{ width: progressPercentage + '%' }"
-            :aria-valuenow="progressPercentage"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
-        </div>
-
-        <div class="flashcard w-100 mb-4" :class="{ flipped: isFlipped }" @click="flipCard">
-          <div class="card-inner">
-            <div
-              class="card-front bg-white border border-2 border-primary rounded-4 shadow-sm d-flex flex-column justify-content-center align-items-center p-4"
-            >
-              <h3 class="mb-0">{{ currentCard?.front }}</h3>
-              <p v-show="!hasFlipped" class="text-muted small mt-3 mb-0">
-                (Click or press <kbd>Space</kbd> to flip)
-              </p>
-            </div>
-
-            <div
-              class="card-back bg-primary bg-opacity-50 border border-2 border-primary rounded-4 shadow d-flex flex-column justify-content-center align-items-center p-4"
-            >
-              <h3 class="mb-0">{{ currentCard?.back }}</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between gap-3" :class="{ invisible: !hasFlipped }">
-          <button class="btn btn-success flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" @click="handleRating('easy')">
-            <span class="d-block text-uppercase mb-1">Easy</span>
-            <kbd class="bg-dark bg-opacity-25 text-light border-0">E</kbd>
-          </button>
-          <button class="btn btn-primary flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" @click="handleRating('kinda')">
-            <span class="d-block text-uppercase mb-1">Kinda</span>
-            <kbd class="bg-dark bg-opacity-25 text-light border-0">K</kbd>
-          </button>
-          <button class="btn btn-danger flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" @click="handleRating('forgot')">
-            <span class="d-block text-uppercase mb-1">Forgot</span>
-            <kbd class="bg-dark bg-opacity-25 text-light border-0">F</kbd>
-          </button>
-        </div>
+      <div class="d-flex justify-content-between gap-3 w-100">
+        <button 
+          class="btn flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" 
+          :class="canRate ? 'btn-success' : 'btn-outline-success'"
+          :disabled="!canRate"
+          @click="handleRating('easy')"
+        >
+          <span class="d-block text-uppercase mb-1">Easy</span>
+          <kbd class="bg-dark bg-opacity-25 text-light border-0">E</kbd>
+        </button>
+        <button 
+          class="btn flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" 
+          :class="canRate ? 'btn-primary' : 'btn-outline-primary'"
+          :disabled="!canRate"
+          @click="handleRating('kinda')"
+        >
+          <span class="d-block text-uppercase mb-1">Kinda</span>
+          <kbd class="bg-dark bg-opacity-25 text-light border-0">K</kbd>
+        </button>
+        <button 
+          class="btn flex-fill w-100 py-3 fw-bold rounded-3 shadow-sm" 
+          :class="canRate ? 'btn-danger' : 'btn-outline-danger'"
+          :disabled="!canRate"
+          @click="handleRating('forgot')"
+        >
+          <span class="d-block text-uppercase mb-1">Forgot</span>
+          <kbd class="bg-dark bg-opacity-25 text-light border-0">F</kbd>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.max-950 {
+  max-width: 950px;
+}
+
 .srs-window {
-  min-height: 520px;
+  min-height: 480px;
 }
 
 .flashcard {
   height: 300px;
   perspective: 1000px;
   cursor: pointer;
+  container-type: size; 
 }
 
 .card-inner {
@@ -289,6 +323,12 @@ onUnmounted(() => {
   transform: rotateY(180deg);
 }
 
+.card-text {
+  font-size: clamp(1rem, 10cqh, 1.75rem);
+  width: 100%;
+  word-wrap: break-word;
+}
+
 kbd {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.85em;
@@ -298,6 +338,13 @@ kbd {
 
 .progress-bar {
   transition: width 0.4s ease;
+}
+
+:deep(.simplebar-content) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
 }
 </style>
 

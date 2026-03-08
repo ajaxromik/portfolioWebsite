@@ -295,47 +295,53 @@ onBeforeUnmount(async () => {
 
 <template>
   <div class="bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
-    <!-- adjust the height fitting so it all ideally fits in frame at top scroll -->
-    <header class="d-flex justify-content-between align-items-start p-3 bg-light w-100">
-      <div>
-        <router-link to="/flashcards/decks" class="btn btn-outline-secondary btn-sm">
-          <i class="bi bi-arrow-left me-1"></i>
-          Back
-        </router-link>
-      </div>
-      <div class="text-end">
-        <div class="small text-muted">Deck</div>
-        <div class="fw-semibold">{{ deck?.title || '...' }}</div>
-      </div>
-    </header>
+    
+    <div class="bg-light w-100 border-bottom">
+      <div class="container-fluid py-3">
+        <div class="row align-items-start justify-content-between m-0">
+          
+          <div class="col-auto col-lg-2 order-1 mb-3 mb-lg-0 px-0">
+            <router-link to="/flashcards/decks" class="btn btn-outline-secondary btn-sm">
+              <i class="bi bi-arrow-left me-1"></i>&nbsp;Back
+            </router-link>
+          </div>
 
-    <section v-if="isLoading || errorMessage || hasAnyCards" class="review-section position-relative d-flex align-items-center justify-content-center bg-light">
-      
-      <div v-if="isLoading" class="d-flex align-items-center gap-3">
-        <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
-        <div class="text-secondary">Loading cards...</div>
-      </div>
+          <div class="col-auto col-lg-2 order-2 order-lg-3 text-end mb-3 mb-lg-0 px-0">
+            <div class="small text-muted">Deck</div>
+            <div class="fw-semibold">{{ deck?.title || '...' }}</div>
+          </div>
 
-      <div v-else-if="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+          <div class="col-12 col-lg-8 order-3 order-lg-2 d-flex flex-column align-items-center px-0">
+            
+            <div v-if="isLoading" class="d-flex align-items-center gap-3 my-4">
+              <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
+              <div class="text-secondary">Loading cards...</div>
+            </div>
 
-      <div v-else-if="hasAnyCards" class="w-100">
-        <FlashcardReview :cards="cardsForReview" @rate="handleRate" />
-        <div class="text-center text-muted small mt-2">
-          Reviews sync every 30 seconds.
-          <span v-if="isFlushingSrs" class="ms-2">
-            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-            Saving...
-          </span>
+            <div v-else-if="errorMessage" class="alert alert-danger w-100 my-4">{{ errorMessage }}</div>
+
+            <div v-else-if="hasAnyCards" class="w-100 d-flex flex-column align-items-center">
+              <FlashcardReview :cards="cardsForReview" @rate="handleRate" />
+              <div class="text-center text-muted small mt-2">
+                Click the card or press <kbd>Space</kbd> to flip. Resyncs every 30 seconds. 
+                <span v-if="isFlushingSrs" class="ms-2">
+                  <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                  Saving...
+                </span>
+              </div>
+            </div>
+
+            <div v-else class="text-center py-4 w-100">
+              <div class="card border-0 shadow-sm p-4 p-md-5 mx-auto" style="max-width: 500px;">
+                <h2 class="h4 fw-bold mb-2">No cards yet</h2>
+                <p class="text-secondary mb-0">Add cards below to start reviewing.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-
-      <div v-else class="container text-center">
-        <div class="card border-0 shadow-sm p-4 p-md-5">
-          <h2 class="h4 fw-bold mb-2">No cards yet</h2>
-          <p class="text-secondary mb-0">Add cards below to start reviewing.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <section class="py-4 py-md-5 bg-new-light">
       <div class="container">
@@ -484,10 +490,4 @@ onBeforeUnmount(async () => {
     </ConfirmModal>
   </div>
 </template>
-
-<style scoped>
-.review-section {
-  min-height: calc(100vh - 133px);
-}
-</style>
 
