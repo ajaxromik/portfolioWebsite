@@ -66,7 +66,7 @@
                   <li>Researched how to build a Vue SPA and use Google Firebase to host it for free.</li>
                   <li>Built the app with Bootstrap 5 styling based largely on my LinkedIn and Resume with the help of Google's Gemini and Cursor IDE.</li>
                   <li>Used Firestore Database to add a spaced repetition flashcard system that users can create and review their own flashcards with.</li>
-                  <li>Used Firebase Authentication to allow users to sign into my application with Google.</li>
+                  <li>Used Firebase Authentication to allow users to sign into my application with Google, and set up Docker for tests emulating users.</li>
                 </ul>
               </div>
             </div>
