@@ -1,4 +1,7 @@
 <script setup>
+// TODO: preserve correct order of creation for cards that are uploaded in batches
+// TODO: allow URL images somehow or maybe uploads?
+// TODO: firework or party popper animation when finished
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import SimpleBar from 'simplebar-vue';
 
