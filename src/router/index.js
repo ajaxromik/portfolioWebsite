@@ -17,6 +17,11 @@ const router = createRouter({
       component: () => import('../views/ExperienceView.vue') // lazy load for other components
     },
     {
+      path: '/projects',
+      name: 'projects',
+      component: () => import('../views/ProjectsView.vue') // lazy load for other components
+    },
+    {
       path: '/credentials',
       name: 'credentials',
       component: () => import('../views/CredentialsView.vue')

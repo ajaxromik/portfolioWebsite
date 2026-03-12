@@ -1,4 +1,5 @@
 <script setup>
+// TODO: separate into MVC
 import { Timestamp } from 'firebase/firestore';
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue';
 import { onBeforeRouteLeave, useRoute } from 'vue-router';
