@@ -1,22 +1,49 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import { Collapse } from 'bootstrap';
 
+const menuEl = ref(null);
+let collapseInstance = null;
+
+onMounted(() => {
+  if(menuEl.value) {
+    // toggle set so that it starts closed
+    collapseInstance = new Collapse(menuEl.value, {toggle : false});
+  }
+});
+
 const toggleNavMenu = () => {
-  const menuEl = document.getElementById('navbarNav');
-  const collapseInstance = Collapse.getOrCreateInstance(menuEl);
-  collapseInstance.toggle();
+  collapseInstance?.toggle();
+};
+
+const handleMenuClick = (event) => {
+  // router-links render as <a>, and the hamburger menu is a button
+  const clickedLink = event.target.closest('a');
+  console.log(`clicked: ${clickedLink}`); // TODO: remove
+  
+  if (clickedLink) {
+    // ignore clicks on the "Portfolio" dropdown toggle
+    if (clickedLink.classList.contains('dropdown-toggle')) {
+      return; 
+    }
+
+    // close the navbar
+    if (menuEl.value && menuEl.value.classList.contains('show')) {
+      collapseInstance?.hide();
+    }
+  }
 };
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-darkest-blue sticky-top">
-    <div class="container mw-100">
+    <div class="container mw-100" @click="handleMenuClick">
       <router-link class="navbar-brand fw-bold ps-2" to="/">William Carr</router-link>
-      <button class="navbar-toggler" type="button" @click="toggleNavMenu">
+      <button class="navbar-toggler" type="button" @click.stop="toggleNavMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav" ref="menuEl">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
@@ -26,7 +53,7 @@ const toggleNavMenu = () => {
             <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Portfolio
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end bg-darkest-blue border-0 text-end" aria-labelledby="portfolioDropdown">
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end bg-darkest-blue border-0 text-lg-end" aria-labelledby="portfolioDropdown">
               <li>
                 <router-link class="dropdown-item" to="/projects">Projects</router-link>
               </li>
