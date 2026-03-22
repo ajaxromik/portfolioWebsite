@@ -119,11 +119,13 @@ const nextCard = () => {
   isFlipped.value = false;
   hasFlipped.value = false;
 
-  if (currentCardIndex.value < reviewQueue.value.length - 1) {
-    currentCardIndex.value++;
-  } else {
-    resetReviewState();
-  }
+  setTimeout(() => {
+    if (currentCardIndex.value < reviewQueue.value.length - 1) {
+      currentCardIndex.value++;
+    } else {
+      resetReviewState();
+    }
+  }, 300);
 };
 
 const handleRating = (rating) => {
@@ -218,8 +220,11 @@ onUnmounted(() => {
               class="h-100 w-100 d-flex flex-column justify-content-center align-items-center p-4"
             >
               <h3 class="mb-3">Flashcard Review</h3>
-              <p class="fs-6 mb-3">
+              <p v-if="dueCardsTotal === 0" class="fs-6 mb-3">
                 You have <strong class="text-primary">{{ dueCardsTotal }}</strong> cards ready.
+              </p>
+              <p v-else class="fs-6 mb-3">
+                You've finished reviewing, but you're welcome to keep going.
               </p>
               <button
                 class="btn btn-success btn-lg px-4 rounded-pill shadow-sm"
@@ -320,10 +325,16 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  /* iOS Safari specific fix for backface glitches */
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0); 
+  -webkit-transform: translateZ(0);
 }
 
 .card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
+  /* iOS Safari specific fix for backface glitches */
+  -webkit-transform: rotateY(180deg) translateZ(0);
 }
 
 .card-text {
