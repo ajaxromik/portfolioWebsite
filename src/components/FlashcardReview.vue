@@ -16,7 +16,8 @@ const emit = defineEmits(['rate']);
 
 const isReviewing = ref(false);
 const isFlipped = ref(false);
-const hasFlipped = ref(false);
+const hasFlippedOnce = ref(false);
+const isTransitioning = ref(false);
 const reviewQueue = ref([]);
 const currentCardIndex = ref(0);
 
@@ -75,12 +76,12 @@ const statusText = computed(() => {
   return dueCardsTotal.value > 0 ? 'Ready to review' : 'Nothing for review';
 });
 
-const canRate = computed(() => isReviewing.value && hasFlipped.value);
+const canRate = computed(() => isReviewing.value && hasFlippedOnce.value);
 
 const resetReviewState = () => {
   isReviewing.value = false;
   isFlipped.value = false;
-  hasFlipped.value = false;
+  hasFlippedOnce.value = false;
   reviewQueue.value = [];
   currentCardIndex.value = 0;
 };
@@ -105,21 +106,23 @@ const startReview = () => {
 
   currentCardIndex.value = 0;
   isFlipped.value = false;
-  hasFlipped.value = false;
+  hasFlippedOnce.value = false;
   isReviewing.value = true;
 };
 
 const flipCard = () => {
   if (!isReviewing.value) return;
   isFlipped.value = !isFlipped.value;
-  hasFlipped.value = true;
+  hasFlippedOnce.value = true;
 };
 
 const nextCard = () => {
+  isTransitioning.value = true;
   isFlipped.value = false;
-  hasFlipped.value = false;
+  hasFlippedOnce.value = false;
 
   setTimeout(() => {
+    isTransitioning.value = false;
     if (currentCardIndex.value < reviewQueue.value.length - 1) {
       currentCardIndex.value++;
     } else {
@@ -172,7 +175,7 @@ const handleKeydown = (event) => {
     flipCard();
   }
 
-  if (hasFlipped.value) {
+  if (hasFlippedOnce.value) {
     const key = event.key.toLowerCase();
     if (key === 'e') handleRating('easy');
     if (key === 'k') handleRating('kinda');
@@ -220,7 +223,7 @@ onUnmounted(() => {
               class="h-100 w-100 d-flex flex-column justify-content-center align-items-center p-4"
             >
               <h3 class="mb-3">Flashcard Review</h3>
-              <p v-if="dueCardsTotal === 0" class="fs-6 mb-3">
+              <p v-if="dueCardsTotal > 0" class="fs-6 mb-3">
                 You have <strong class="text-primary">{{ dueCardsTotal }}</strong> cards ready.
               </p>
               <p v-else class="fs-6 mb-3">
@@ -238,7 +241,7 @@ onUnmounted(() => {
               </p>
             </div>
             
-            <div v-show="isReviewing" class="h-100 w-100 p-2">
+            <div v-show="isReviewing" class="h-100 w-100 p-2" :class="isTransitioning ? 'content-hidden' : 'content-fade'">
               <SimpleBar class="h-100 w-100 text-center">
                 <h3 class="card-text mb-0 p-3">{{ currentCard?.front }}</h3>
               </SimpleBar>
@@ -248,7 +251,7 @@ onUnmounted(() => {
           <div
             class="card-back bg-primary bg-opacity-10 border border-2 border-primary rounded-4 shadow-sm overflow-hidden"
           >
-            <div class="h-100 w-100 p-2">
+            <div class="h-100 w-100 p-2" :class="isTransitioning ? 'content-hidden' : 'content-fade'">
               <SimpleBar class="h-100 w-100 text-center">
                 <h3 class="card-text mb-0 p-3">{{ currentCard?.back }}</h3>
               </SimpleBar>
@@ -341,6 +344,16 @@ onUnmounted(() => {
   font-size: clamp(1rem, 10cqh, 1.75rem);
   width: 100%;
   word-wrap: break-word;
+}
+
+.content-fade {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+.content-hidden {
+  opacity: 0;
+  transition: none; 
 }
 
 kbd {
