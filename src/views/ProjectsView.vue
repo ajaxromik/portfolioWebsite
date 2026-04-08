@@ -17,10 +17,9 @@
                   <a target="_blank" class="btn btn-outline-primary btn-sm rounded-pill fw-semibold disabled"><i class="bi bi-code-slash me-1"></i> Private Repository</a>
                 </div>
                 <ul class="m-0 text-secondary">
-                  <li>Researched how to build a Vue SPA and use Google Firebase to host it for free.</li>
-                  <li>Built the app with Bootstrap 5 styling based largely on my LinkedIn and Resume with the help of Google's Gemini and Cursor IDE.</li>
-                  <li>Used Firestore Database to add a spaced repetition flashcard system that users can create and review their own flashcards with.</li>
-                  <li>Used Firebase Authentication to allow users to sign into my application with Google, and set up Docker for tests emulating users.</li>
+                  <li>Researched and developed a Vue SPA hosted for free by Google Firebase with the Cursor IDE and Gemini</li>
+                  <li>Built and tested the app with Bootstrap 5 styling before adding a SRS flashcard application integrated with Firebase Authentication and a Google Cloud Firestore database</li>
+                  <li>Setup Docker to improve proficiency with container-based development workflows</li>
                 </ul>
               </div>
             </div>
