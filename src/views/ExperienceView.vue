@@ -12,6 +12,17 @@
           <div class="col-md-12">
             <div class="card border-0 shadow bg-light mb-4">
               <div class="card-body p-4">
+                <h3 class="h4 fw-bold text-primary">Systems Integration and Test Engineer at Leidos</h3>
+                <p class="text-muted mb-2">Jul. 2026 - Current</p>
+                <p class="m-0 text-secondary">As I am only just starting this position, most details are still to be determined.</p>
+                <!-- <ul class="m-0 text-secondary">
+                  <li>TBD</li>
+                </ul> -->
+              </div>
+            </div>
+
+            <div class="card border-0 shadow bg-light mb-4">
+              <div class="card-body p-4">
                 <h3 class="h4 fw-bold text-primary">Software Engineering Co-op/Intern at RunSignUp</h3>
                 <p class="text-muted mb-2">Jan. 2025 - Aug. 2025</p>
                 <ul class="m-0 text-secondary">
@@ -22,10 +33,11 @@
                 </ul>
               </div>
             </div>
+
             <div class="card border-0 shadow bg-light mb-4">
               <div class="card-body p-4">
                 <h3 class="h4 fw-bold text-primary">Web Developer at Rowan University</h3>
-                <p class="text-muted mb-2">Aug. 2022 - Current</p>
+                <p class="text-muted mb-2">Aug. 2022 - May 2026</p>
                 <ul class="m-0 text-secondary">
                   <li>Collaborated with a team to find creative solutions to challenging functionality, changes in requirements, and technical enhancements of website applications involving modifications, data processing, and database design.</li>
                   <li>Enhanced a scheduling application responsible for identifying a large course load and managing instructors for the Computer Science Department, including building data management forms integrated with MySQL and server-side business logic coded in PHP.</li>
@@ -33,6 +45,7 @@
                 </ul>
               </div>
             </div>
+
             <div class="card border-0 shadow bg-light">
               <div class="card-body p-4">
                 <h3 class="h4 fw-bold text-primary">Machine Learning Documentation Project at Edge Impulse</h3>
