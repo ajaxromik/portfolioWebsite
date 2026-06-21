@@ -7,7 +7,7 @@
             <h1 class="display-1 fw-bold text-new-dark">Welcome to my<br>Vue.js Portfolio</h1>
             <h2 class="display-5 text-secondary mb-3 fw-semibold">William Carr</h2>
             <h2 class="h4 text-secondary mb-3">Software Engineering Intern, Full-Stack Developer, and Scrum Master</h2>
-            <p class="lead text-muted mb-3">Anticipating Graduation May 2026</p>
+            <p class="lead text-muted mb-3">Graduated May 2026</p>
             <div class="d-flex justify-content-center gap-3">
               <router-link to="/experience" class="btn btn-secondary btn-lg">View My Experience</router-link>
             </div>

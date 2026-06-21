@@ -49,6 +49,7 @@
             <div class="card border-0 shadow bg-light">
               <div class="card-body p-4">
                 <h3 class="h4 fw-bold text-primary">Machine Learning Documentation Project at Edge Impulse</h3>
+                <p class="text-muted mb-2">Dec. 2022 - Jan. 2023</p>
                 <ul class="m-0 text-secondary">
                   <li>Produced a working end-to-end demo for Edge Impulse using a new MPU from Renesas with a specialized AI core.</li>
                   <li>Created an Al that detects cars from a curbside view of the road using a camera on the Renesas RZ/V2L board.</li>
