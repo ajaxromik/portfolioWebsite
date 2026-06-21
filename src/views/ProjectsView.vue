@@ -12,7 +12,7 @@
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
                     <h3 class="h4 fw-bold card-title text-primary">Firebase Hosted Vue.js Single Page Application (This Site!)</h3>
-                    <p class="text-muted mb-2">Currently In Development</p>
+                    <p class="text-muted mb-2">Mar. 2026 - Apr. 2026</p>
                   </div>
                   <a target="_blank" class="btn btn-outline-primary btn-sm rounded-pill fw-semibold disabled"><i class="bi bi-code-slash me-1"></i> Private Repository</a>
                 </div>
@@ -114,7 +114,7 @@
                 <div class="d-flex gap-2 justify-content-between align-items-start mb-2">
                   <div>
                     <h3 class="h4 fw-bold card-title text-primary">Unity P2P Multiplayer Fishing Game</h3>
-                    <p class="text-muted mb-2">Currently In Development</p>
+                    <p class="text-muted mb-2">Jan. 2026 - May 2026</p>
                   </div>
                   <a target="_blank" class="btn btn-outline-primary btn-sm rounded-pill fw-semibold disabled"><i class="bi bi-code-slash me-1"></i> Private Repository</a>
                 </div>
