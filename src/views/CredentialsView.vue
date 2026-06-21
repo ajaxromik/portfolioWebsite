@@ -1,3 +1,7 @@
+<script setup>
+import SecurityPlusLinkedBadge from '../components/SecurityPlusLinkedBadge.vue'
+</script>
+
 <template>
   <div class="bg-new-light text-new-dark flex-grow-1 d-flex flex-column">
     <section class="flex-grow-1 d-flex flex-column justify-content-center py-5 px-4 container">
@@ -22,13 +26,13 @@
     <section class="flex-grow-1 d-flex flex-column justify-content-center py-5 bg-light">
       <div class="container px-4">
         <div class="row mx-md-0 gx-5 text-center">
-          <h2 class="fw-bold col-12 pb-1">Certification (In Progress)</h2>
-          <div class="col-12 mt-3">
-            <h3 class="h4 mb-2">CompTIA Security+</h3>
+          <h2 class="fw-bold col-12 pb-1">Certification</h2>
+
+          <div class="col-12">
+            <SecurityPlusLinkedBadge />
+
             <p class="fs-5 mb-0">
-              I am currently studying for the CompTIA Security+ certification.
-              <br />
-              I hope to improve my technical skills in securing networks, devices, data, and my own private life.
+              Completed June 18th, 2026
             </p>
           </div>
         </div>
