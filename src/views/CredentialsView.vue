@@ -14,10 +14,10 @@ import SecurityPlusLinkedBadge from '../components/SecurityPlusLinkedBadge.vue'
           <p class="mb-0">Rowan University, Glassboro, NJ</p>
         </div>
         <div class="col-6 col-md-12">
-          <p class="my-2"><span class="fw-semibold">Honors:</span> GPA 3.7, President's List, Dean's List</p>
+          <p class="my-2"><span class="fw-semibold">Honors:</span> GPA 3.78, President's List, Dean's List</p>
           <p class="mb-0"><span class="fw-semibold">Highlight Courses:</span> Software Engineering, Data Structures & Algorithms,
             <br>
-            Visual Analytics, and Database Systems and Design
+            Visual Analytics, Database Systems and Design, and Intro to Data Mining
           </p>
         </div>
       </div>
